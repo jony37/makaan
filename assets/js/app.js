@@ -12,13 +12,19 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  //   slider 2
+  const cards = document.querySelectorAll(".property-cards, .property-content, .property-animate, .property-list__btns, .property-list__card");
 
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("property-card__animation");
+            observer.unobserve(entry.target); 
+        }
+    }), {
+        threshold: 1.5
+    }
+  });
 
-
-
-
-
-
-
-  
+  cards.forEach(card => observer.observe(card))
 });
